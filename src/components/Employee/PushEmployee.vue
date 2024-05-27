@@ -1,6 +1,9 @@
 <template>
   <div class="push-employee">
-    <h1>Add New Employee</h1>
+    <div class="header">
+      <h1>Add New Employee</h1>
+      <router-link to="/employees" class="back-button">Back</router-link>
+    </div>
     <form @submit.prevent="submitEmployee">
       <div class="form-group">
         <label for="firstName">First Name:</label>
@@ -30,36 +33,7 @@
       <div class="form-group">
         <label for="jobTitle">Job Title:</label>
         <select id="jobTitle" v-model="employee.jobTitle" required>
-          <option value="Trainee">Trainee</option>
-          <option value="Junior Developer">Junior Developer</option>
-          <option value="Software Developer">Software Developer</option>
-          <option value="Senior Developer">Senior Developer</option>
-          <option value="Lead Developer">Lead Developer</option>
-          <option value="Front-end Developer">Front-end Developer</option>
-          <option value="Back-end Developer">Back-end Developer</option>
-          <option value="Full Stack Developer">Full Stack Developer</option>
-          <option value="DevOps Engineer">DevOps Engineer</option>
-          <option value="QA Engineer">QA Engineer</option>
-          <option value="Automation Tester">Automation Tester</option>
-          <option value="Technical Support Engineer">Technical Support Engineer</option>
-          <option value="Scrum Master">Scrum Master</option>
-          <option value="Project Manager">Project Manager</option>
-          <option value="Product Owner">Product Owner</option>
-          <option value="UI/UX Designer">UI/UX Designer</option>
-          <option value="System Analyst">System Analyst</option>
-          <option value="Database Administrator (DBA)">Database Administrator (DBA)</option>
-          <option value="Solution Architect">Solution Architect</option>
-          <option value="Chief Technology Officer (CTO)">Chief Technology Officer (CTO)</option>
-          <option value="Software Engineer">Software Engineer</option>
-          <option value="Mobile Developer">Mobile Developer</option>
-          <option value="Data Scientist">Data Scientist</option>
-          <option value="Data Engineer">Data Engineer</option>
-          <option value="Machine Learning Engineer">Machine Learning Engineer</option>
-          <option value="Cybersecurity Specialist">Cybersecurity Specialist</option>
-          <option value="Cloud Engineer">Cloud Engineer</option>
-          <option value="IT Support Specialist">IT Support Specialist</option>
-          <option value="Technical Writer">Technical Writer</option>
-          <option value="Business Analyst">Business Analyst</option>
+          <!-- Job titles options -->
         </select>
       </div>
       <button type="submit">Submit</button>
@@ -116,6 +90,27 @@ const submitEmployee = async () => {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-button {
+  background-color: #132163;
+  color: #ffffff;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #0f1a4d;
+}
+
 h1 {
   color: #132163;
   margin-bottom: 20px;
@@ -150,8 +145,7 @@ button {
   color: #ffffff;
   padding: 12px;
   border: none;
-  border-radius:
-  10px;
+  border-radius: 10px;
   cursor: pointer;
   font-size: 16px;
   width: calc(100% - 20px);

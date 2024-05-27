@@ -1,6 +1,12 @@
 <template>
   <div class="departments">
     <h1>Departments List</h1>
+    <div class="search-box">
+      <div class="search-input-container">
+        <input type="text" v-model="searchQuery" placeholder="Search Department Name" class="search-input">
+        <span class="search-icon"><i class="fas fa-search"></i></span>
+      </div>
+    </div>
     <div class="action-buttons">
       <button @click="goToAddDepartment">Add Department</button>
       <button @click="goToDeleteDepartment">Delete Department</button>
@@ -15,9 +21,9 @@
       </thead>
       <tbody>
         <tr v-for="(department) in filtereddepartments" :key="department.departmentID">
-            <td>{{ department.name}}</td>
-            <td>{{ department.managerID }}</td>
-          </tr>
+          <td>{{ department.name }}</td>
+          <td>{{ department.managerID }}</td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -29,8 +35,16 @@ export default {
   name: 'Department',
   data() {
     return {
-      filtereddepartments: []
+      departments: [],
+      searchQuery: ''
     };
+  },
+  computed: {
+    filtereddepartments() {
+      return this.departments.filter(department =>
+        department.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
   },
   created() {
     this.fetchDepartments();
@@ -43,7 +57,7 @@ export default {
           throw new Error('Unable to connect to the network');
         }
         const data = await response.json();
-        this.filtereddepartments = data;
+        this.departments = data;
       } catch (error) {
         console.error('Error fetching departments:', error);
         alert('Error fetching departments: ' + error.message);
@@ -135,5 +149,47 @@ tbody tr:hover {
 
 .action-buttons button:hover {
   background-color: #0f1a4d;
+}
+
+/* Styles for the search box */
+.search-box {
+  display: flex;
+  justify-content: flex-start;
+  margin-right: auto;
+}
+
+.search-select {
+  margin-right: 15px;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.search-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  padding: 10px 20px;
+  padding-right: 40px; /* Make room for the icon */
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 250px;
+  background-color: #ffffff;
+}
+
+.search-icon {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #777;
+  cursor: pointer;
+  font-size: 18px;
 }
 </style>

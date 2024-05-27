@@ -8,10 +8,11 @@ import UpdateEmployee from '@/components/Employee/UpdateEmployee.vue';
 import Department from '@/components/Department/Department.vue';
 import PushDepartment from '@/components/Department/PushDepartment.vue';
 import DeleteDepartment from '@/components/Department/DeleteDepartment.vue';
-/*import UpdateDepartment from '@/components/Department/UpdateDepartment.vue';*/
+import UpdateDepartment from '@/components/Department/UpdateDepartment.vue';
 import Project from '@/components/Project/Project.vue';
 import PushProject from '@/components/Project/PushProject.vue';
-import DeleteProject from '@/components/Project/DeleteProject.vue'; 
+import DeleteProject from '@/components/Project/DeleteProject.vue';
+import UpdateProject from '@/components/Project/UpdateProject.vue'; 
 
 const routes = [
   {
@@ -41,7 +42,7 @@ const routes = [
   },
   {
     path: '/departments',
-    name: 'Department',
+    name: 'Departments',
     component: Department
   },
   {
@@ -50,18 +51,18 @@ const routes = [
     component: PushDepartment 
   },
   {
-    path: '/delete-Department',
+    path: '/delete-department',
     name: 'DeleteDepartment',
     component: DeleteDepartment 
   },
-  /*{
+  {
     path: '/update-department',
     name: 'UpdateDepartment',
     component: UpdateDepartment
-  },*/
+  },
   {
     path: '/projects',
-    name: 'Project',
+    name: 'Projects',
     component: Project
   },
   {
@@ -70,9 +71,14 @@ const routes = [
     component: PushProject 
   },
   {
-    path: '/delete-Project',
+    path: '/delete-project',
     name: 'DeleteProject',
     component: DeleteProject 
+  },
+  {
+    path: '/update-project',
+    name: 'UpdateProject',
+    component: UpdateProject 
   },
 ];
 

@@ -32,13 +32,12 @@
           <td>{{ employee.email }}</td>
           <td>{{ employee.jobTitle }}</td>
           <td>{{ employee.projectName }}</td>
-          <td>{{ employee.departmentName }}</td>
+          <td>{{ employee.departmentName || 'N/A' }}</td>
         </tr>
       </tbody>
     </table>
   </div>
 </template>
-
 <script>
 
 export default {
@@ -101,7 +100,7 @@ export default {
       const query = this.searchQuery.toLowerCase();
       const selectedDepartment = this.searchDepartment.toLowerCase();
       return this.employees.filter(employee => {
-        const departmentName = employee.departmentName.toLowerCase();
+        const departmentName = employee.departmentName ? employee.departmentName.toLowerCase() : '';
         return (selectedDepartment === '' || departmentName === selectedDepartment) &&
                (query === '' || employee.firstName.toLowerCase().includes(query) || employee.lastName.toLowerCase().includes(query));
       });
@@ -109,7 +108,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .employees {
   padding: 30px;

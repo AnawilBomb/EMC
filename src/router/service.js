@@ -31,7 +31,7 @@ async GetEmployeeDetails() {
 
   async UpdateEmployee(employee) {
     try {
-      const response = await axios.put(`${baseURL}/Employee/UpdateEmployee/${employee.EmployeeId}`, employee);
+      const response = await axios.put(`${baseURL}/Employee/UpdateEmployee?id=${employee.EmployeeId}`, employee);
       return response.data;
     } catch (error) {
       throw new Error('Failed to update employee: ' + (error.response?.data?.message || error.message));
@@ -61,6 +61,14 @@ async GetDepartmentDetails() {
       throw new Error('Failed to fetch department: ' + (error.response?.data?.message || error.message));
     }
   },
+  async UpdateDepartment(department) {
+    try {
+      const response = await axios.put(`${baseURL}/Department/UpdateDepartment?id=${department.DepartmentID}`, department);
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to update department: ' + (error.response?.data?.message || error.message));
+    }
+  },
   async PushProject(project) {
     try {
       const response = await axios.post(`${baseURL}/Project/PushProject`, project);
@@ -83,6 +91,14 @@ async GetProjectDetails() {
       return response.data;
     } catch (error) {
       throw new Error('Failed to fetch project: ' + (error.response?.data?.message || error.message));
+    }
+  },
+  async UpdateProject(project) {
+    try {
+      const response = await axios.put(`${baseURL}/Project/UpdateProject?id=${project.ProjectId}`, project);
+      return response.data;
+    } catch (error) {
+      throw new Error('Failed to update project: ' + (error.response?.data?.message || error.message));
     }
   },
 };
